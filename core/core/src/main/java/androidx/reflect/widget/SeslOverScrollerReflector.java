@@ -17,6 +17,7 @@
 package androidx.reflect.widget;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
+import static androidx.reflect.DeviceInfo.isSamsung;
 
 import android.os.Build;
 import android.widget.OverScroller;
@@ -63,7 +64,7 @@ public class SeslOverScrollerReflector {
     }
 
     public static void setSmoothScrollEnabled(@NonNull OverScroller overScroller, boolean enabled) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (isSamsung() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Method method = SeslBaseReflector.getDeclaredMethod(mClass, "semSetSmoothScrollEnabled", Boolean.TYPE);
             if (method != null) {
                 SeslBaseReflector.invoke(overScroller, method, enabled);
