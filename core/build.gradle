@@ -14,10 +14,10 @@ android {
         versionName sesl_core_version
     }
 
-    compileOptions {
+    /*compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
+    }*/
 
     sourceSets.main.resources.srcDir "$buildDir/javaResources"
 
