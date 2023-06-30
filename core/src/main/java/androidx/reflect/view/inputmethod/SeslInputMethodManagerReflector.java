@@ -21,6 +21,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.RestrictTo;
+import androidx.reflect.DeviceInfo;
 import androidx.reflect.SeslBaseReflector;
 
 import java.lang.reflect.Method;
@@ -43,14 +44,15 @@ public class SeslInputMethodManagerReflector {
      * Returns current accessory keyboard state in the given {@link InputMethodManager}.
      */
     public static int isAccessoryKeyboardState(InputMethodManager imm) {
-        Method method = SeslBaseReflector.getMethod(mClass, "isAccessoryKeyboardState");
-        if (method != null) {
-            Object result = SeslBaseReflector.invoke(imm, method);
-            if (result instanceof Integer) {
-                return (Integer) result;
+        if (DeviceInfo.isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClass, "isAccessoryKeyboardState");
+            if (method != null) {
+                Object result = SeslBaseReflector.invoke(imm, method);
+                if (result instanceof Integer) {
+                    return (Integer) result;
+                }
             }
         }
-
         return 0;
     }
 
@@ -58,14 +60,15 @@ public class SeslInputMethodManagerReflector {
      * Get whether the soft keyboard is shown in the given {@link InputMethodManager}.
      */
     public static boolean isInputMethodShown(InputMethodManager imm) {
-        Method method = SeslBaseReflector.getMethod(mClass, "semIsInputMethodShown");
-        if (method != null) {
-            Object result = SeslBaseReflector.invoke(imm, method);
-            if (result instanceof Boolean) {
-                return (Boolean) result;
+        if (DeviceInfo.isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClass, "semIsInputMethodShown");
+            if (method != null) {
+                Object result = SeslBaseReflector.invoke(imm, method);
+                if (result instanceof Boolean) {
+                    return (Boolean) result;
+                }
             }
         }
-
         return false;
     }
 }

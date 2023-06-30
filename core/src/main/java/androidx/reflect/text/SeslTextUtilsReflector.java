@@ -23,6 +23,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 
 import androidx.annotation.RestrictTo;
+import androidx.reflect.DeviceInfo;
 import androidx.reflect.SeslBaseReflector;
 
 import java.lang.reflect.Method;
@@ -45,24 +46,26 @@ public class SeslTextUtilsReflector {
      * Calls <b>TextUtils.semGetPrefixCharForSpan(TextPaint, CharSequence, char[])</b>.
      */
     public static char[] semGetPrefixCharForSpan(TextPaint paint, CharSequence text, char[] prefix) {
-        Method method;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            method = SeslBaseReflector.getDeclaredMethod(mClass, "hidden_semGetPrefixCharForSpan", TextPaint.class, CharSequence.class, char[].class);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            method = SeslBaseReflector.getMethod(mClass, "semGetPrefixCharForSpan", TextPaint.class, CharSequence.class, char[].class);
-        } else {
-            method = SeslBaseReflector.getMethod(mClass, "getPrefixCharForIndian", TextPaint.class, CharSequence.class, char[].class);
+        if (DeviceInfo.isSamsung()) {
+            Method method;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                method = SeslBaseReflector.getDeclaredMethod(mClass, "hidden_semGetPrefixCharForSpan", TextPaint.class, CharSequence.class, char[].class);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                method = SeslBaseReflector.getMethod(mClass, "semGetPrefixCharForSpan", TextPaint.class, CharSequence.class, char[].class);
+            } else {
+                method = SeslBaseReflector.getMethod(mClass, "getPrefixCharForIndian", TextPaint.class, CharSequence.class, char[].class);
+            }
+
+            if (method != null) {
+                Object result = SeslBaseReflector.invoke(null, method, paint, text, prefix);
+                if (result instanceof char[]) {
+                    return (char[]) result;
+                } else {
+                    return null;
+                }
+            }
         }
 
-        if (method == null) {
-            return new char[0];
-        }
-
-        Object result = SeslBaseReflector.invoke(null, method, paint, text, prefix);
-        if (result instanceof char[]) {
-            return (char[]) result;
-        }
-
-        return null;
+        return new char[0];
     }
 }

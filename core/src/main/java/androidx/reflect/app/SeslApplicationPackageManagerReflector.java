@@ -17,6 +17,7 @@
 package androidx.reflect.app;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
+import static androidx.reflect.DeviceInfo.isSamsung;
 
 import android.content.ComponentName;
 import android.graphics.drawable.Drawable;
@@ -46,15 +47,16 @@ public class SeslApplicationPackageManagerReflector {
      * Retrieve the icon associated with the given <arg>packageName</arg>.
      */
     public static Drawable semGetApplicationIconForIconTray(@NonNull Object instance, String packageName, int mode) {
-        Method method = SeslBaseReflector.getMethod(mClassName, "semGetApplicationIconForIconTray", String.class, Integer.TYPE);
+        if (isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClassName, "semGetApplicationIconForIconTray", String.class, Integer.TYPE);
 
-        if (method != null) {
-            Object result = SeslBaseReflector.invoke(instance, method, packageName, mode);
-            if (result instanceof Drawable) {
-                return (Drawable) result;
+            if (method != null) {
+                Object result = SeslBaseReflector.invoke(instance, method, packageName, mode);
+                if (result instanceof Drawable) {
+                    return (Drawable) result;
+                }
             }
         }
-
         return null;
     }
 
@@ -62,15 +64,16 @@ public class SeslApplicationPackageManagerReflector {
      * Retrieve the icon associated with the given {@link ComponentName}.
      */
     public static Drawable semGetActivityIconForIconTray(@NonNull Object instance, ComponentName activityName, int mode) {
-        Method method = SeslBaseReflector.getMethod(mClassName, "semGetActivityIconForIconTray", ComponentName.class, Integer.TYPE);
+        if (isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClassName, "semGetActivityIconForIconTray", ComponentName.class, Integer.TYPE);
 
-        if (method != null) {
-            Object result = SeslBaseReflector.invoke(instance, method, activityName, mode);
-            if (result instanceof Drawable) {
-                return (Drawable) result;
+            if (method != null) {
+                Object result = SeslBaseReflector.invoke(instance, method, activityName, mode);
+                if (result instanceof Drawable) {
+                    return (Drawable) result;
+                }
             }
         }
-
         return null;
     }
 }

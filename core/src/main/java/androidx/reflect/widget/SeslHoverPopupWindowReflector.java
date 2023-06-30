@@ -22,6 +22,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.reflect.DeviceInfo;
 import androidx.reflect.SeslBaseReflector;
 
 import java.lang.reflect.Field;
@@ -53,24 +54,25 @@ public class SeslHoverPopupWindowReflector {
      * Returns <b>SemHoverPopupWindow.TYPE_NONE</b>.
      */
     public static int getField_TYPE_NONE() {
-        Object TYPE_NONE = null;
+        if (DeviceInfo.isSamsung()) {
+            Object TYPE_NONE = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Method method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_TYPE_NONE");
-            if (method != null) {
-                TYPE_NONE = SeslBaseReflector.invoke(null, method);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                Method method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_TYPE_NONE");
+                if (method != null) {
+                    TYPE_NONE = SeslBaseReflector.invoke(null, method);
+                }
+            } else {
+                Field field = SeslBaseReflector.getField(mClassName, "TYPE_NONE");
+                if (field != null) {
+                    TYPE_NONE = SeslBaseReflector.get(null, field);
+                }
             }
-        } else {
-            Field field = SeslBaseReflector.getField(mClassName, "TYPE_NONE");
-            if (field != null) {
-                TYPE_NONE = SeslBaseReflector.get(null, field);
+
+            if (TYPE_NONE instanceof Integer) {
+                return (Integer) TYPE_NONE;
             }
         }
-
-        if (TYPE_NONE instanceof Integer) {
-            return (Integer) TYPE_NONE;
-        }
-
         return 0;
     }
 
@@ -78,24 +80,25 @@ public class SeslHoverPopupWindowReflector {
      * Returns <b>SemHoverPopupWindow.TYPE_TOOLTIP</b>.
      */
     public static int getField_TYPE_TOOLTIP() {
-        Object TYPE_TOOLTIP = null;
+        if (DeviceInfo.isSamsung()) {
+            Object TYPE_TOOLTIP = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Method method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_TYPE_TOOLTIP");
-            if (method != null) {
-                TYPE_TOOLTIP = SeslBaseReflector.invoke(null, method);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                Method method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_TYPE_TOOLTIP");
+                if (method != null) {
+                    TYPE_TOOLTIP = SeslBaseReflector.invoke(null, method);
+                }
+            } else {
+                Field field = SeslBaseReflector.getField(mClassName, "TYPE_TOOLTIP");
+                if (field != null) {
+                    TYPE_TOOLTIP = SeslBaseReflector.get(null, field);
+                }
             }
-        } else {
-            Field field = SeslBaseReflector.getField(mClassName, "TYPE_TOOLTIP");
-            if (field != null) {
-                TYPE_TOOLTIP = SeslBaseReflector.get(null, field);
+
+            if (TYPE_TOOLTIP instanceof Integer) {
+                return (Integer) TYPE_TOOLTIP;
             }
         }
-
-        if (TYPE_TOOLTIP instanceof Integer) {
-            return (Integer) TYPE_TOOLTIP;
-        }
-
         return 1;
     }
 
@@ -103,24 +106,25 @@ public class SeslHoverPopupWindowReflector {
      * Returns <b>SemHoverPopupWindow.TYPE_USER_CUSTOM</b>.
      */
     public static int getField_TYPE_USER_CUSTOM() {
-        Object TYPE_USER_CUSTOM = null;
+        if (DeviceInfo.isSamsung()) {
+            Object TYPE_USER_CUSTOM = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Method method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_TYPE_USER_CUSTOM");
-            if (method != null) {
-                TYPE_USER_CUSTOM = SeslBaseReflector.invoke(null, method);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                Method method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_TYPE_USER_CUSTOM");
+                if (method != null) {
+                    TYPE_USER_CUSTOM = SeslBaseReflector.invoke(null, method);
+                }
+            } else {
+                Field field = SeslBaseReflector.getField(mClassName, "TYPE_USER_CUSTOM");
+                if (field != null) {
+                    TYPE_USER_CUSTOM = SeslBaseReflector.get(null, field);
+                }
             }
-        } else {
-            Field field = SeslBaseReflector.getField(mClassName, "TYPE_USER_CUSTOM");
-            if (field != null) {
-                TYPE_USER_CUSTOM = SeslBaseReflector.get(null, field);
+
+            if (TYPE_USER_CUSTOM instanceof Integer) {
+                return (Integer) TYPE_USER_CUSTOM;
             }
         }
-
-        if (TYPE_USER_CUSTOM instanceof Integer) {
-            return (Integer) TYPE_USER_CUSTOM;
-        }
-
         return 3;
     }
 
@@ -128,17 +132,19 @@ public class SeslHoverPopupWindowReflector {
      * Set <var>gravity</var> in the given <var>hoverPopupWindow</var>.
      */
     public static void setGravity(@NonNull Object hoverPopupWindow, int gravity) {
-        Method method;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_setGravity", Integer.TYPE);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            method = SeslBaseReflector.getMethod(mClassName, "setGravity", Integer.TYPE);
-        } else {
-            method = SeslBaseReflector.getMethod(mClassName, "setPopupGravity", Integer.TYPE);
-        }
+        if (DeviceInfo.isSamsung()) {
+            Method method;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_setGravity", Integer.TYPE);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                method = SeslBaseReflector.getMethod(mClassName, "setGravity", Integer.TYPE);
+            } else {
+                method = SeslBaseReflector.getMethod(mClassName, "setPopupGravity", Integer.TYPE);
+            }
 
-        if (method != null) {
-            SeslBaseReflector.invoke(hoverPopupWindow, method, gravity);
+            if (method != null) {
+                SeslBaseReflector.invoke(hoverPopupWindow, method, gravity);
+            }
         }
     }
 
@@ -146,17 +152,19 @@ public class SeslHoverPopupWindowReflector {
      * Set a custom offset in the given <var>hoverPopupWindow</var>.
      */
     public static void setOffset(@NonNull Object hoverPopupWindow, int x, int y) {
-        Method method;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_setOffset", Integer.TYPE, Integer.TYPE);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            method = SeslBaseReflector.getMethod(mClassName, "setOffset", Integer.TYPE, Integer.TYPE);
-        } else {
-            method = SeslBaseReflector.getMethod(mClassName, "setPopupPosOffset", Integer.TYPE, Integer.TYPE);
-        }
+        if (DeviceInfo.isSamsung()) {
+            Method method;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_setOffset", Integer.TYPE, Integer.TYPE);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                method = SeslBaseReflector.getMethod(mClassName, "setOffset", Integer.TYPE, Integer.TYPE);
+            } else {
+                method = SeslBaseReflector.getMethod(mClassName, "setPopupPosOffset", Integer.TYPE, Integer.TYPE);
+            }
 
-        if (method != null) {
-            SeslBaseReflector.invoke(hoverPopupWindow, method, x, y);
+            if (method != null) {
+                SeslBaseReflector.invoke(hoverPopupWindow, method, x, y);
+            }
         }
     }
 
@@ -164,15 +172,17 @@ public class SeslHoverPopupWindowReflector {
      * Set the hover detect time in the given <var>hoverPopupWindow</var>.
      */
     public static void setHoverDetectTime(@NonNull Object hoverPopupWindow, int ms) {
-        Method method;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_setHoverDetectTime", Integer.TYPE);
-        } else {
-            method = SeslBaseReflector.getMethod(mClassName, "setHoverDetectTime", Integer.TYPE);
-        }
+        if (DeviceInfo.isSamsung()) {
+            Method method;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                method = SeslBaseReflector.getDeclaredMethod(mClassName, "hidden_setHoverDetectTime", Integer.TYPE);
+            } else {
+                method = SeslBaseReflector.getMethod(mClassName, "setHoverDetectTime", Integer.TYPE);
+            }
 
-        if (method != null) {
-            SeslBaseReflector.invoke(hoverPopupWindow, method, ms);
+            if (method != null) {
+                SeslBaseReflector.invoke(hoverPopupWindow, method, ms);
+            }
         }
     }
 
@@ -180,9 +190,11 @@ public class SeslHoverPopupWindowReflector {
      * Set a custom hovering point in the given <var>hoverPopupWindow</var>.
      */
     public static void setHoveringPoint(@NonNull Object hoverPopupWindow, int x, int y) {
-        Method method = SeslBaseReflector.getMethod(mClassName, "setHoveringPoint", Integer.TYPE, Integer.TYPE);
-        if (method != null) {
-            SeslBaseReflector.invoke(hoverPopupWindow, method, x, y);
+        if (DeviceInfo.isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClassName, "setHoveringPoint", Integer.TYPE, Integer.TYPE);
+            if (method != null) {
+                SeslBaseReflector.invoke(hoverPopupWindow, method, x, y);
+            }
         }
     }
 
@@ -190,17 +202,19 @@ public class SeslHoverPopupWindowReflector {
      * Update the given <var>hoverPopupWindow</var>.
      */
     public static void update(@NonNull Object hoverPopupWindow) {
-        Method method;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            method = SeslBaseReflector.getMethod(mClassName, "hidden_update");
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            method = SeslBaseReflector.getMethod(mClassName, "update");
-        } else {
-            method = SeslBaseReflector.getMethod(mClassName, "updateHoverPopup");
-        }
+        if (DeviceInfo.isSamsung()) {
+            Method method;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                method = SeslBaseReflector.getMethod(mClassName, "hidden_update");
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                method = SeslBaseReflector.getMethod(mClassName, "update");
+            } else {
+                method = SeslBaseReflector.getMethod(mClassName, "updateHoverPopup");
+            }
 
-        if (method != null) {
-            SeslBaseReflector.invoke(hoverPopupWindow, method);
+            if (method != null) {
+                SeslBaseReflector.invoke(hoverPopupWindow, method);
+            }
         }
     }
 }

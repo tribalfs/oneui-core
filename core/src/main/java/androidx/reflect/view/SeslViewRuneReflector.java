@@ -16,6 +16,7 @@
 
 package androidx.reflect.view;
 
+import androidx.reflect.DeviceInfo;
 import androidx.reflect.SeslBaseReflector;
 
 import java.lang.reflect.Method;
@@ -37,15 +38,17 @@ public class SeslViewRuneReflector {
      * Get whether the device is a foldable with dual display.
      */
     public static boolean supportFoldableDualDisplay() {
-        Method method = SeslBaseReflector.getMethod(mClassName, "hidden_supportFoldableDualDisplay");
+        if (DeviceInfo.isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClassName, "hidden_supportFoldableDualDisplay");
 
-        Object result = null;
-        if (method != null) {
-            result = SeslBaseReflector.invoke(mClassName, method);
-        }
+            Object result = null;
+            if (method != null) {
+                result = SeslBaseReflector.invoke(mClassName, method);
+            }
 
-        if (result instanceof Boolean) {
-            return (Boolean) result;
+            if (result instanceof Boolean) {
+                return (Boolean) result;
+            }
         }
 
         return false;
@@ -55,15 +58,17 @@ public class SeslViewRuneReflector {
      * Get whether the device is a foldable without the sub display.
      */
     public static boolean supportFoldableNoSubDisplay() {
-        Method method = SeslBaseReflector.getMethod(mClassName, "hidden_supportFoldableNoSubDisplay");
+        if (DeviceInfo.isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClassName, "hidden_supportFoldableNoSubDisplay");
 
-        Object result = null;
-        if (method != null) {
-            result = SeslBaseReflector.invoke(mClassName, method);
-        }
+            Object result = null;
+            if (method != null) {
+                result = SeslBaseReflector.invoke(mClassName, method);
+            }
 
-        if (result instanceof Boolean) {
-            return (Boolean) result;
+            if (result instanceof Boolean) {
+                return (Boolean) result;
+            }
         }
 
         return false;
@@ -73,15 +78,17 @@ public class SeslViewRuneReflector {
      * Get whether the {@link android.widget.EdgeEffect} stretch effect is enabled.
      */
     public static boolean isEdgeEffectStretchType() {
-        Method method = SeslBaseReflector.getMethod(mClassName, "hidden_isEdgeEffectStretchType");
+        if (DeviceInfo.isSamsung()) {
+            Method method = SeslBaseReflector.getMethod(mClassName, "hidden_isEdgeEffectStretchType");
 
-        Object result = null;
-        if (method != null) {
-            result = SeslBaseReflector.invoke(mClassName, method);
-        }
+            Object result = null;
+            if (method != null) {
+                result = SeslBaseReflector.invoke(mClassName, method);
+            }
 
-        if (result instanceof Boolean) {
-            return (Boolean) result;
+            if (result instanceof Boolean) {
+                return (Boolean) result;
+            }
         }
 
         return false;
