@@ -1,10 +1,12 @@
 plugins {
-    id("com.android.library")
+    id 'com.android.library'
+    id 'maven-publish'
+   // id 'signing'
 }
 
 android {
+    compileSdk target_sdk
     namespace "androidx.drawerlayout"
-
     defaultConfig {
         versionName sesl_drawerlayout_version[0]
     }
@@ -18,7 +20,7 @@ android {
 
 dependencies {
     api("androidx.annotation:annotation:$androidx_annotation_version")
-    api(project(":core:core"))
+    implementation(project(":core:core"))
     api(project(":customview"))
 }
 
@@ -27,5 +29,10 @@ task writeVersionFile() {
     def versionFileName = "androidx.drawerlayout_drawerlayout.version"
 
     new File(versionFileDir).mkdirs()
-    new File(versionFileDir + '/' + versionFileName).text = sesl_drawerlayout_version[1] + "\n"
+    new File(versionFileDir + '/' + versionFileName).text = "1.0.2-sesl4" + "\n"
+}
+
+ext {
+    POM_NAME = "Sesl DrawerLayout"
+    POM_DESCRIPTION = "Sesl DrawerLayout Library."
 }

@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("maven-publish")
 }
 
 android {
@@ -39,4 +40,10 @@ task writeVersionFile() {
 
     new File(versionFileDir).mkdirs()
     new File(versionFileDir + '/' + versionFileName).text = sesl_coordinatorlayout_version[1] + "\n"
+}
+
+
+ext {
+    POM_NAME = "Sesl CoordinatorLayout"
+    POM_DESCRIPTION = "Sesl CoordinatorLayout Library."
 }

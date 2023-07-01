@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("maven-publish")
 }
 
 android {
@@ -44,4 +45,9 @@ task writeVersionFile() {
 
     new File(versionFileDir).mkdirs()
     new File(versionFileDir + '/' + versionFileName).text = sesl_core_version[1] + "\n"
+}
+
+ext {
+    POM_NAME = "Sesl Core"
+    POM_DESCRIPTION = "Sesl Core Library."
 }

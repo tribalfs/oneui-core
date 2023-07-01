@@ -1,12 +1,15 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id ("maven-publish")
 }
 
 android {
     namespace "androidx.core.ktx"
 
     defaultConfig {
+        minSdk 23
+        targetSdk target_sdk
         versionName sesl_core_ktx_version[0]
     }
 
@@ -29,4 +32,10 @@ task writeVersionFile() {
 
     new File(versionFileDir).mkdirs()
     new File(versionFileDir + '/' + versionFileName).text = sesl_core_ktx_version[1] + "\n"
+}
+
+
+ext {
+    POM_NAME = "Sesl Core-KTX"
+    POM_DESCRIPTION = "Sesl Core-KTX Library."
 }
