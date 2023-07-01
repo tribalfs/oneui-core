@@ -3053,6 +3053,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
         mHoverScrollEnabled = enabled;
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     public void seslSetGoToTopEnabled(boolean enabled) {
         seslSetGoToTopEnabled(enabled, isLightTheme(mContext)
                 ? SESL_GO_TO_TOP_BUTTON_STYLE_WHITE : SESL_GO_TO_TOP_BUTTON_STYLE_BLACK);
