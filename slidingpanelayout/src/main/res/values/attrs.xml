@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SlidingPaneLayout">
+        <attr name="seslIsSinglePanel"  format="boolean" />
+        <attr name="seslDrawRoundedCorner" format="boolean"  />
+        <attr name="seslDrawRoundedCornerColor" format="color"  />
+        <attr name="seslResizeOff" format="boolean"/>
+        <attr name="seslDrawerMarginTop" format="dimension"/>
+        <attr name="seslDrawerMarginBottom"  format="dimension"/>
+        <attr name="seslPrefDrawerWidthSize"  format="float|dimension"/>
+        <attr name="seslPrefContentWidthSize"  format="float|dimension"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="sesl_sliding_layout_default_open">false</bool>
+</resources>

@@ -18,4 +18,5 @@ ext {
     sesl_core_ktx_version = [ '2.0.0-beta01', '1.0.1-sesl5' ]
     sesl_customview_version = [ '2.0.0', '1.0.1-sesl5' ]
     sesl_drawerlayout_version = [ '2.0.0', '1.0.1-sesl5' ]
+    sesl_slidingpanelayout_version = [ '1.2.0-beta01-tribalfs', '1.2.0-sesl5' ]
 }

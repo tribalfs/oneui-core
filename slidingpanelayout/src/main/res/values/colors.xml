@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sesl_gray_D1">#010102</color>
+    <color name="sesl_gray_L3">#f2f2f3</color>
+	
+    <color name="sesl_sliding_pane_background_dark">@color/sesl_gray_D1</color>
+    <color name="sesl_sliding_pane_background_light">@color/sesl_gray_L3</color>
+</resources>

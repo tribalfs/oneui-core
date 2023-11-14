@@ -1,0 +1,47 @@
+plugins {
+    id ("com.android.library")
+    id ("org.jetbrains.kotlin.android")
+    id ("maven-publish")
+}
+
+android {
+    namespace "androidx.slidingpanelayout"
+    defaultConfig {
+        versionName sesl_slidingpanelayout_version[0]
+    }
+
+    sourceSets.main.resources.srcDir "$buildDir/javaResources"
+
+    libraryVariants.all {
+        it.processJavaResourcesProvider.get().dependsOn(writeVersionFile)
+    }
+}
+
+
+
+dependencies {
+    api("androidx.annotation:annotation:1.7.0")
+    implementation("androidx.window:window:1.1.0")
+    implementation("androidx.transition:transition:1.4.1")
+
+    api("io.github.oneuiproject.sesl:appcompat:1.4.0"){
+        exclude group:"io.github.oneuiproject.sesl",  module:"fragment "
+    }
+    implementation(project(":core:core-ktx"))//sesl5
+    implementation(project(":coordinatorlayout"))//sesl5
+}
+
+
+task writeVersionFile() {
+    def versionFileDir = "$buildDir/javaResources/META-INF"
+    def versionFileName = "androidx.slidingpanelayout_slidingpanelayout.version"
+
+    new File(versionFileDir).mkdirs()
+    new File(versionFileDir + '/' + versionFileName).text = "1.2.0-sesl5" + "\n"
+}
+
+ext {
+    POM_ARTIFACT_ID = "slidingpanelayout"
+    POM_NAME = "SlidingPaneLayout"
+    POM_DESCRIPTION = "SESL SlidingPaneLayout."
+}
