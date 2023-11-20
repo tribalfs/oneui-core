@@ -3,3 +3,4 @@ include ':core:core', ':core:core-ktx'
 include ':customview'
 include ':drawerlayout'
 include ":slidingpanelayout"
+include ":appcompat"

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!-- Original code by Samsung, all rights reserved to the original author. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24.0dip" android:height="24.0dip"
+    android:viewportWidth="72.0" android:viewportHeight="72.0"
+    android:tint="?attr/actionMenuTextColor">
+
+    <path
+        android:fillColor="#ffffffff"
+        android:pathData="M36,8C20.559,8 8,20.561 8,36.001C8,51.44 20.559,64 36,64c15.441,0 28,-12.56 28,-27.999C64,20.561 51.441,8 36,8M36.138,16.779c2.212,0 4.002,1.79 4.002,3.999s-1.79,4.001 -4.002,4.001c-2.208,0 -3.998,-1.792 -3.998,-4.001S33.93,16.779 36.138,16.779M40,53.142h-6.4V35.486h-3.963v-6.399H40V53.142z" />
+
+</vector>

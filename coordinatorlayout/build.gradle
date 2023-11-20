@@ -25,6 +25,10 @@ android {
     libraryVariants.all {
         it.processJavaResourcesProvider.get().dependsOn(writeVersionFile)
     }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
 }
 
 dependencies {

@@ -18,17 +18,14 @@ android {
 }
 
 
-
 dependencies {
-    api("androidx.annotation:annotation:1.7.0")
-    implementation("androidx.window:window:1.1.0")
-    implementation("androidx.transition:transition:1.4.1")
-
-    api("io.github.oneuiproject.sesl:appcompat:1.4.0"){
-        exclude group:"io.github.oneuiproject.sesl",  module:"fragment "
-    }
+    api(project(":appcompat"))
     implementation(project(":core:core-ktx"))//sesl5
     implementation(project(":coordinatorlayout"))//sesl5
+
+    api("androidx.annotation:annotation:$androidx_annotation_version")
+    implementation("androidx.window:window:$androidx_window_version")
+    implementation("androidx.transition:transition:$androidx_transition_version")
 }
 
 

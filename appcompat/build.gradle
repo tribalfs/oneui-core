@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    namespace "androidx.appcompat"
+    defaultConfig {
+        versionName sesl_appcompat_version[0]
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    sourceSets {
+        main.resources.srcDir "$buildDir/javaResources"
+        main.res.srcDirs += "src/main/res-public"
+    }
+
+    buildTypes.configureEach {
+        consumerProguardFiles "proguard-rules.pro"
+    }
+
+
+    libraryVariants.configureEach {
+        it.processJavaResourcesProvider.get().dependsOn(writeVersionFile)
+    }
+
+
+}
+
+dependencies {
+    api(project(":core:core"))
+    api(project(":drawerlayout"))
+
+    api("io.github.oneuiproject.sesl:fragment:$sesl_fragment_version")
+    api("androidx.appcompat:appcompat-resources:$androidx_appcompat_resources_version")
+
+    api("androidx.annotation:annotation:$androidx_annotation_version")
+    api("androidx.cursoradapter:cursoradapter:$androidx_cursoradapter_version")
+    api("androidx.activity:activity:$androidx_activity_version")
+    api("androidx.savedstate:savedstate:$androidx_savedstate_version")
+
+    implementation("androidx.collection:collection:$androidx_collection_version")
+    implementation("androidx.lifecycle:lifecycle-runtime:$androidx_lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$androidx_lifecycle_version")
+}
+
+
+task writeVersionFile() {
+    def versionFileDir = "$buildDir/javaResources/META-INF"
+    def versionFileName = "androidx.appcompat_appcompat.version"
+
+    new File(versionFileDir).mkdirs()
+    new File(versionFileDir + '/' + versionFileName).text = sesl_appcompat_version[1] + "\n"
+}
+
+
+ext {
+    POM_NAME = "Sesl AppCompat"
+    POM_DESCRIPTION = "Sesl AppCompat Library."
+}

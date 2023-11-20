@@ -121,11 +121,11 @@ subprojects {
     }
 
     afterEvaluate {
-        return
+        return 
         if (!plugins.hasPlugin('signing')) {
             return
         }
-        
+
         android {
             publishing {
                 singleVariant("release") {
@@ -134,7 +134,6 @@ subprojects {
                 }
             }
         }
-
 
 
         signing {
